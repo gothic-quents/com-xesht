@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Зешт. Хор</title>
+<meta name="description" content="Анкета персонажа: Зешт, страж Братства Спящего. Болотный лагерь.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Spectral:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --void:#0d0f0c;
+  --bog:#151913;
+  --bone:#d9d5c5;
+  --ash:#7e8174;
+  --voice:#3c4236;
+  --rot:#a9c35b;
+  --display:"Cormorant Garamond","Cormorant",Georgia,serif;
+  --text:"Spectral",Georgia,serif;
+  --col:46rem;
+  --hor:.35;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--void)}
+body{margin:0;background:var(--void);color:var(--bone);font:300 1.13rem/1.78 var(--text);
+  -webkit-font-smoothing:antialiased;font-kerning:normal;overflow-x:hidden}
+::selection{background:var(--rot);color:var(--void)}
+a{color:inherit;text-decoration-color:var(--voice);text-underline-offset:.22em}
+a:hover{color:var(--rot);text-decoration-color:currentColor}
+a:focus-visible{outline:1px solid var(--rot);outline-offset:4px}
+p{margin:0}
+img{display:block;max-width:100%}
+
+.choir{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;opacity:var(--hor);transition:opacity 2.4s ease;
+  -webkit-mask-image:linear-gradient(to right,#000 0%,#000 10%,rgba(0,0,0,.14) 22%,rgba(0,0,0,.14) 78%,#000 90%,#000 100%);
+          mask-image:linear-gradient(to right,#000 0%,#000 10%,rgba(0,0,0,.14) 22%,rgba(0,0,0,.14) 78%,#000 90%,#000 100%)}
+.choir span{position:absolute;white-space:nowrap;font:italic 300 var(--s,1.1rem)/1 var(--display);color:var(--voice);
+  opacity:.12;animation:breathe var(--d,9s) ease-in-out var(--dl,0s) infinite}
+.choir span.brat{color:var(--voice)}
+body.brat-mode .choir span.brat{color:var(--rot)}
+@keyframes breathe{0%,100%{opacity:.08}50%{opacity:1}}
+
+.page{position:relative;z-index:1}
+
+.hero{min-height:100vh;min-height:100svh;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);align-items:end;
+  max-width:1280px;margin:0 auto;padding:0 clamp(20px,5vw,64px)}
+.hero-in{padding:0 0 clamp(40px,8vh,96px);position:relative;z-index:2}
+.hero-in::before{content:"";position:absolute;inset:-12% -18% -6% -22%;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 40% 55%,var(--void) 38%,rgba(13,15,12,.85) 55%,rgba(13,15,12,0) 78%)}
+.hero .who{font-style:italic;color:var(--ash);font-size:1rem;margin-bottom:1.2rem}
+.hero h1{font:300 clamp(6rem,3rem + 15vw,16rem)/.78 var(--display);letter-spacing:-.02em;margin:0 0 0 -.05em;color:var(--bone)}
+.hero .lede{font:italic 300 clamp(1.35rem,1rem + 1vw,1.9rem)/1.3 var(--display);max-width:22em;margin-top:1.6rem;color:var(--bone)}
+.facts{display:grid;grid-template-columns:auto minmax(0,1fr);gap:.35rem 1.4rem;margin:2.4rem 0 0;max-width:30rem;font-size:.98rem}
+.facts dt{font-style:italic;color:var(--ash)}
+.facts dd{margin:0}
+.portrait{margin:0;align-self:stretch;position:relative;min-width:0}
+.portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%;
+  filter:grayscale(.2) contrast(1.04) brightness(.9);
+  -webkit-mask-image:linear-gradient(to right,transparent 0%,#000 30%,#000 86%,transparent 100%),linear-gradient(to top,transparent 0%,#000 32%);
+  -webkit-mask-composite:source-in;mask-image:linear-gradient(to right,transparent 0%,#000 30%,#000 86%,transparent 100%),linear-gradient(to top,transparent 0%,#000 32%);mask-composite:intersect}
+.portrait figcaption{position:absolute;right:0;bottom:1.4rem;font-size:.8rem;font-style:italic;color:var(--ash)}
+.portrait.missing{visibility:hidden}
+
+.wrap{max-width:1280px;margin:0 auto;padding:0 clamp(20px,5vw,64px)}
+.col{max-width:var(--col);margin-left:auto;margin-right:auto}
+
+.toc{padding:clamp(64px,12vh,140px) 0 0}
+.toc h2{font:300 1rem/1.4 var(--text);font-style:italic;color:var(--ash);margin:0 0 1rem}
+.toc ol{list-style:none;margin:0;padding:0;border-top:1px solid var(--voice)}
+.toc li{border-bottom:1px solid var(--voice)}
+.toc a{display:grid;grid-template-columns:2.2rem minmax(0,1fr);gap:1rem;align-items:baseline;padding:.7rem 0;text-decoration:none}
+.toc .n{font:300 1.25rem/1 var(--display);color:var(--ash)}
+.toc .t{font:400 1.45rem/1.2 var(--display)}
+.toc a:hover .t{color:var(--rot)}
+
+section{padding-top:clamp(96px,16vh,180px)}
+.sec-head{margin-bottom:2.6rem}
+.sec-head .where{font-style:italic;color:var(--ash);font-size:1rem;display:flex;gap:1rem;align-items:baseline}
+.sec-head .where .n{font:300 1.6rem/1 var(--display);color:var(--bone);font-style:normal}
+.sec-head h2{font:300 clamp(3rem,2rem + 4vw,5.6rem)/.95 var(--display);letter-spacing:-.01em;margin:.5rem 0 0;color:var(--bone)}
+.prose{display:grid;gap:1.2em}
+.prose .aside{font-style:italic;color:var(--ash)}
+.line{font:italic 300 clamp(1.9rem,1.4rem + 1.6vw,2.8rem)/1.15 var(--display);color:var(--bone);margin:1.1em 0;padding:.45em 0 .5em 1.1em;border-left:2px solid var(--rot);background:linear-gradient(to right,rgba(169,195,91,.07),rgba(169,195,91,0) 70%)}
+.line.brat-line{color:var(--rot);background:linear-gradient(to right,rgba(169,195,91,.13),rgba(169,195,91,0) 75%)}
+.line.small{font-size:clamp(1.5rem,1.2rem + 1vw,2rem)}
+.line .who{display:block;font:italic 300 .9rem/1.4 var(--text);color:var(--ash);margin-top:.5rem}
+.me{color:var(--ash)}
+.brat-line{animation:drozh 8s ease-in-out infinite}
+@keyframes drozh{0%,44%,58%,100%{filter:none}47%{filter:blur(.7px)}50%{filter:none}53%{filter:blur(1px)}}
+
+.kredo{margin:4.4rem 0 3.6rem;padding:1.6rem 0 1.8rem 1.6rem;border-left:2px solid var(--rot);position:relative}
+.kredo::before{content:"«";position:absolute;left:1.1rem;top:-.55em;font:300 6rem/1 var(--display);color:var(--rot);opacity:.9}
+.kredo blockquote{margin:0;padding-top:1.4rem;font:300 clamp(2.3rem,1.5rem + 3vw,4.2rem)/1.04 var(--display);letter-spacing:-.01em;color:var(--bone)}
+.kredo blockquote span{display:block}
+.kredo figcaption{margin-top:1.2rem;font-style:italic;color:var(--ash);font-size:1rem}
+
+.ledger{margin:3.4rem 0 0;padding:1.6rem 0 0;border-top:1px solid var(--voice)}
+.ledger h3{font:italic 300 1rem/1.4 var(--text);color:var(--ash);margin:0 0 1rem}
+.ledger ul{list-style:none;margin:0;padding:0;columns:2;column-gap:2.4rem}
+.ledger li{break-inside:avoid;padding:.18rem 0 .18rem 1.4rem;position:relative}
+.ledger li::before{content:"";position:absolute;left:0;top:.82em;width:.7rem;height:1px;background:var(--ash)}
+.ledger .owed{margin-top:1.4rem;display:flex;justify-content:space-between;align-items:baseline;gap:1rem;border-top:1px dotted var(--voice);padding-top:.9rem}
+.ledger .owed span{font-style:italic;color:var(--ash)}
+.ledger .owed b{font:400 1.6rem/1 var(--display)}
+
+.signs{list-style:none;margin:2.4rem 0 0;padding:0;display:grid;gap:.9rem;border-top:1px solid var(--voice);padding-top:1.6rem}
+.signs li{display:grid;grid-template-columns:7.5rem minmax(0,1fr);gap:1.2rem}
+.signs li i{color:var(--ash)}
+
+.art{margin:0 0 2.6rem;position:relative}
+.art img{width:100%;aspect-ratio:16/8;object-fit:cover;filter:grayscale(.6) contrast(1.05) brightness(.8)}
+.art figcaption{margin-top:.6rem;font-size:.8rem;font-style:italic;color:var(--ash)}
+.art.missing{display:none}
+
+.end{padding:clamp(120px,22vh,240px) 0 clamp(80px,14vh,160px)}
+.end .pred{font-style:italic;color:var(--ash);margin-bottom:1.6rem}
+#slova{font:300 clamp(3.4rem,2rem + 6vw,7.6rem)/.95 var(--display);letter-spacing:-.015em;color:var(--rot);margin:0}
+#slova .w{display:inline-block;white-space:nowrap}
+#slova .w span{display:inline-block;opacity:0;filter:blur(10px);transform:translateY(.15em);transition:opacity 1.6s ease,filter 1.6s ease,transform 1.6s ease}
+#slova.go .w span{opacity:1;filter:none;transform:none}
+.end .sign{margin-top:3rem;font-style:italic;color:var(--ash)}
+
+
+
+@media (max-width:980px){
+  .hero{grid-template-columns:minmax(0,1fr);align-items:start}
+  .portrait{order:-1;height:62vh;margin:0 calc(-1 * clamp(20px,5vw,64px))}
+  .portrait img{-webkit-mask-image:linear-gradient(to top,transparent 0%,#000 40%);mask-image:linear-gradient(to top,transparent 0%,#000 40%)}
+  .portrait.missing{display:none}
+  .hero-in{padding-top:3rem}
+  .col{margin-left:0}
+  .choir{-webkit-mask-image:linear-gradient(to bottom,#000 0%,rgba(0,0,0,.12) 20%,rgba(0,0,0,.12) 80%,#000 100%);mask-image:linear-gradient(to bottom,#000 0%,rgba(0,0,0,.12) 20%,rgba(0,0,0,.12) 80%,#000 100%)}
+  .signs li{grid-template-columns:minmax(0,1fr);gap:.1rem}
+  .ledger ul{columns:1}
+  body{font-size:1.06rem}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none !important;transition:none !important}
+  .choir span{opacity:.5}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<div class="choir" aria-hidden="true"></div>
+
+<div class="page">
+
+<header class="hero">
+  <div class="hero-in">
+    <p class="who">Страж Братства Спящего, Болотный лагерь</p>
+    <h1>Зешт</h1>
+    <p class="lede">«Сталь не ошибается. Топор не лжёт. Лгут и ошибаются только люди.»</p>
+    <dl class="facts">
+      <dt>Возраст</dt><dd>Тридцать лет</dd>
+      <dt>Родина</dt><dd>Храмовый остров, Южные острова</dd>
+      <dt>За Барьером</dt><dd>Год</dd>
+    </dl>
+  </div>
+  <figure class="portrait">
+    <img src="img/zesht.jpg" alt="Зешт: бритый темнокожий страж со светлыми глазами, косяк в зубах, топор палача на плече">
+  </figure>
+</header>
+
+<div class="wrap">
+<nav class="toc col" aria-labelledby="toc-h">
+  <h2 id="toc-h">Записано торговцем болотником</h2>
+  <ol>
+    <li><a href="#character"><span class="n">·</span><span class="t">Каков он</span></a></li>
+    <li><a href="#look"><span class="n">·</span><span class="t">Как он выглядит</span></a></li>
+    <li><a href="#ch1"><span class="n">I</span><span class="t">Шалашик</span></a></li>
+    <li><a href="#ch2"><span class="n">II</span><span class="t">Топор жрецов</span></a></li>
+    <li><a href="#ch3"><span class="n">III</span><span class="t">Песок арены</span></a></li>
+    <li><a href="#ch4"><span class="n">IV</span><span class="t">Тихо</span></a></li>
+    <li><a href="#ch5"><span class="n">V</span><span class="t">Ночь без болотника</span></a></li>
+    <li><a href="#ch6"><span class="n">VI</span><span class="t">Акула</span></a></li>
+    <li><a href="#ch7"><span class="n">VII</span><span class="t">Тот, кто слушает хор</span></a></li>
+  </ol>
+</nav>
+
+<section id="character" class="col" data-hor=".3">
+  <div class="sec-head">
+    <p class="where">Со слов того, кто продаёт ему болотник</p>
+    <h2>Каков он</h2>
+  </div>
+  <div class="prose">
+    <p>Первое, что надо про него понять: он не лжёт. Совсем. Спросишь, и он ответит ровным голосом, без нажима, как зачитывают приговор, и ответ тебе не понравится. Я однажды спросил, сколько людей он убил. Он назвал число. Подумал и добавил, что не считает тех, кто умер потом, от ран. С тех пор я задаю ему один вопрос: «Сколько?» Имею в виду косяки.</p>
+    <p>Голос он не повышает никогда. За год я не слышал от него ни крика, ни смеха в голос. Когда злится, молча встаёт, уходит на край мостков и курит, пока не отпустит. Возвращается и продолжает с того слова, на котором остановился. Злость его видно только по окуркам, которые потом плавают в протоке.</p>
+    <p>Девятнадцать косяков в день. И всё равно я, тот, кто продаёт ему каждый, не могу сказать, обкурен он сейчас или трезв. Глаза у него всегда одинаковые. Голос тоже. Это пугает больше топора.</p>
+    <p>В Спящего он верит, как пёс верит в руку, которая держит поводок. Учение ему ни к чему. Гуру говорят про пробуждение и свободу за Барьером, он кивает и ничего из этого не повторяет. Ему нужно, чтобы был хозяин и чтобы хозяину был нужен топор. Раньше хозяином был Белиар, теперь Спящий. Ошейник другой, пёс тот же. Люди в этом не участвуют вовсе.</p>
+    <p class="line">— Все виновны. Вопрос только в приговоре.</p>
+    <p>У него в голове кричат. Все, кого он казнил, начиная с первого. Он зовёт их хором. Когда хор громкий, Зешт глохнет: смотрит на тебя и не слышит, отвечает невпопад, а пальцы сами вяжут узлы на верёвке, намотанной на запястье. Узел, ещё узел, потом развязать всё. Иногда он шепчет им «тише». Не зло. Так говорят с детьми, которые не могут уснуть. Хор, по его словам, послан Спящим как испытание, а болотник как милость. Милость продаю ему я, по куску руды за скрутку.</p>
+    <p>Послушников он наказывает ровно сколько велено. Сказали десять ударов, будет десять, и он считает вслух. Одиннадцатого не будет, даже если провинившийся плюнет ему в лицо: за плевок нужен отдельный приказ, и его, будь уверен, отдадут. Послушники боятся его меньше, чем других стражей, потому что он не добавит от себя. Плохо, что и не убавит.</p>
+    <p>Просить он не умеет. Однажды ночью у него кончился болотник, а я уже спал. Он не постучал. Сел у моей хижины и просидел до утра, вязал и развязывал узлы. К рассвету руки ходили так, что верёвка выскальзывала. Я вынес ему пять скруток и записал в долг. Он кивнул и ушёл. Долг он вернёт, слово он держит так же крепко, как топор. Поэтому я и даю ему в долг. И потому, что отказать боюсь.</p>
+    <p data-dym>С тишиной у него хуже, чем с хором. Когда болотник берёт как надо и хор смолкает, он не знает, куда девать руки. Тогда он достаёт палочки, ровные, я сушу их для него отдельно, и складывает шалашик: две так, две поперёк, слой за слоем, пока башенка не встанет ему по колено. Потом вытягивает по одной, пока она не рухнет. Играет один, но ходит так, будто игроков двое. Палочки свои никому трогать не даёт. Кроме топора, это единственное, с чем он обращается бережно.</p>
+    <p>Смеётся он раз в луну, коротко, носом, когда кто-нибудь неуклюже свалится с мостков или уронит миску. Я спросил, что тут смешного.</p>
+    <p class="line brat-line">— Брат так падал.</p>
+    <p>И до ночи больше ни слова.</p>
+  </div>
+
+  <figure class="kredo">
+    <blockquote><span>Сталь не ошибается.</span><span>Топор не лжёт.</span><span>Лгут и ошибаются только люди.</span></blockquote>
+    <figcaption>Слышал от него раз сто. Себя он считает не стражем, а топором Спящего.</figcaption>
+  </figure>
+
+  <div class="prose">
+    <p>В бою его ставят в первый ряд, туда, где умирают первыми. Он считает это честью, стражи считают удобством. Кто прав, ему безразлично.</p>
+    <p>Боится он трёх вещей, про все три он сказал мне сам: что кончится болотник, что Спящий замолчит, что он окончательно сойдёт с ума. Четвёртую, главную, он не говорил, я её подслушал. Он боится, что крики однажды станут словами.</p>
+  </div>
+
+  <div class="ledger">
+    <h3>На обороте его долговой записки я веду ещё один счёт</h3>
+    <ul>
+      <li>Не лжёт. Никогда.</li>
+      <li>Слово держит.</li>
+      <li>Не жалуется, даже на бок.</li>
+      <li>Терпелив, как свая в болоте.</li>
+      <li>Видит больше, чем говорит.</li>
+      <li>Ждёт смерти, как тишины.</li>
+      <li>Наказывает ровно по вине.</li>
+      <li>Просить не умеет.</li>
+      <li>Не знает, что делать с тишиной.</li>
+      <li>Прям до глупости.</li>
+    </ul>
+    <p class="owed"><span>Должен на сегодня</span><b>40 руды</b></p>
+  </div>
+</section>
+
+<section id="look" class="col" data-hor=".25">
+  <div class="sec-head">
+    <p class="where">Если увидите его впервые</p>
+    <h2>Как он выглядит</h2>
+  </div>
+  <div class="prose">
+    <p>Он выше меня на две головы. Когда он пришёл в Старый лагерь, тело у него было такое, какое делает арена: плечи, шея, ни одной лишней жилы. За год болотник съел с него, может, четверть. Мясо уходит, кости остаются. Доспех стража ещё сидит, но ремни он затягивает на две дырки туже, чем в день посвящения.</p>
+    <p>Кожа тёмная, островная, на болоте она посерела. Голову и лицо он бреет каждое утро одним и тем же ножом. На лбу и висках метки Братства, совсем свежие. Глаза светлые, как вода в бочке, у островитян я таких не видел. Моргает он редко, смотрит прямо и чуть сквозь, веки всегда полуопущены, будто он смертельно устал или только что затянулся. Что из двух, не угадаешь.</p>
+    <p>Двигается медленно и тяжело. Говорит ровно, без подъёмов и спусков, и любая его фраза звучит как последняя. Доспех чистый, ремни смазаны, на топоре ни пятна. За собой он так не следит, за ними следит.</p>
+  </div>
+  <ul class="signs">
+    <li><i>Шея</i><span>Под левым ухом старое клеймо, круг с крестом. Так ассасины Варанта метят своих рабов.</span></li>
+    <li><i>Бок</i><span>Рваный шрам, зашитый наспех. Вдыхает он вполгруди, осторожно.</span></li>
+    <li><i>Спина</i><span>Старые побелевшие полосы от плети.</span></li>
+    <li><i>Руки</i><span>Пальцы жёлтые от болотника до второй фаланги, ладони в мозолях от рукояти. На правом запястье верёвка с парой узлов. Без болотника руки мелко дрожат.</span></li>
+    <li><i>Запах</i><span>Болотник, железо, тина.</span></li>
+    <li><i>За поясом</i><span>Кисет, точильный камень и моя записка с его долгами. Читает её медленно, ведя пальцем: грамоте научился уже в Братстве.</span></li>
+  </ul>
+  <p class="line small" style="margin-top:2.4rem">Не гадайте, обкурен он или нет. Сойдите с мостков и дайте пройти.</p>
+</section>
+
+<section id="ch1" class="col" data-hor=".7" data-brat>
+  <div class="sec-head">
+    <p class="where"><span class="n">I</span>Храмовый остров, детство</p>
+    <h2>Шалашик</h2>
+  </div>
+  <div class="prose">
+    <p class="aside">Дальше то, что я собрал по кускам. Часть он сказал мне сам. Часть я услышал ночью, когда он говорил с хором и думал, что все спят. Я сплю плохо, у меня товар под подушкой.</p>
+    <p>Зешт родился на Храмовом острове, на Южных островах, где всем заправляют жрецы Белиара. Родился не один. Их было двое, близнецы, одно лицо на двоих. Были ли у них родители, я от него ни разу не слышал. Слышал про брата.</p>
+    <p>Они играли в шалашик. Островная забава: из палочек складывают башенку, слой поперёк слоя, а потом вдвоём по очереди вытаскивают по одной. Чья палочка обрушила башню, тот проиграл. Брат проигрывал почти всегда, потому что торопился. И падал всё время на ровном месте. Это я уже знаю.</p>
+    <p>Когда им было по тринадцать, они вдвоём осквернили что-то в храме. Что именно, он не говорит, может, и сам не помнит. Помнит, что было после. Казнить обоих жрецы не стали. Дали мальчишкам по ножу и поставили друг против друга: жить оставят того, кто ударит первым. Это я знаю от него самого, спросил прямо, и он прямо ответил.</p>
+    <p>Остальное я знаю только из ночного шёпота, и записывать это мне неспокойно.</p>
+    <p class="brat-line">Брат, говорит он хору, ножа не поднял. Сказал: «Сыграем?», как говорил каждый вечер. А Зешт ударил.</p>
+    <p class="line brat-line">— Ты же сам опустил. Сам.<span class="who">Ночью, в темноту, три раза</span></p>
+    <p>Что это значит, я тогда не понял и не хочу понимать теперь. В хоре, который он слышит, брат громче всех. Это он сказал мне сам, днём, спокойно, как говорят про дождь.</p>
+  </div>
+</section>
+
+<section id="ch2" class="col" data-hor=".55">
+  <div class="sec-head">
+    <p class="where"><span class="n">II</span>Храмовый остров, с тринадцати до девятнадцати</p>
+    <h2>Топор жрецов</h2>
+  </div>
+  <div class="prose">
+    <p>Жрецы слово сдержали: он остался жить. Жить при храме, топором Белиара.</p>
+    <p>Шесть лет он рубил головы, вешал, клеймил, порол и пытал на допросах тех, кого ему приводили. По праздникам на площади, при всём острове. Я спросил, каково это было.</p>
+    <p class="line">— Как мяснику с мясом.</p>
+    <p>Без гордости и без отвращения. Работа. Люди на острове его к себе не подпускали. Хлеб оставляли на камне у храмовой стены и отходили, пока он не заберёт. Руками его не касался никто, кроме тех, кого он держал за волосы. Говорит он об этом без обиды: так и надо, палача не трогают.</p>
+    <p>Хор начался с первой казни, с брата. Каждая новая прибавляла голос. К девятнадцати их стало столько, что он перестал различать, кто есть кто. Кроме одного.</p>
+    <p>Потом он стал жрецам не нужен. За что, не знает или не говорит. Его продали работорговцам с первым же кораблём. Он не сопротивлялся. Хозяин сменился, только и всего.</p>
+  </div>
+</section>
+
+<section id="ch3" class="col" data-hor=".6">
+  <div class="sec-head">
+    <p class="where"><span class="n">III</span>Варант, десять лет</p>
+    <h2>Песок арены</h2>
+  </div>
+  <div class="prose">
+    <p>Купили его ассасины. Поначалу он делал у них то же, что и на острове: рубил, вешал, допрашивал. Ассасины ценят тех, кто умеет развязать язык и не убить раньше времени. Он умел.</p>
+    <p>Потом его выставили на арену. Толпа его не любила: он убивал быстро и без представления, удар, второй, и на песке тело. Хозяевам это нравилось, потому что дёшево и надёжно. Я спросил, почему быстро.</p>
+    <p class="line">— Чтобы в хоре было меньше крика.</p>
+    <p>Подумал и поправился:</p>
+    <p class="line small">— Короче крик.</p>
+    <p>Дрался он грязно, по-аренному: песок в глаза, локоть в горло, колено куда придётся. Так дерётся и сейчас, и стражи, которых Кор Ангар учил по правилам, этого не любят. Там же, в Варанте, он получил клеймо на шею и полосы на спину. Там же его однажды распороли от рёбер до бедра.</p>
+    <p>Встать на ноги он не успел: в город пришла армия Миртаны. Его взяли раненым вместе с другими людьми ассасинов и записали военнопленным. Пленных король Робар отправлял в одно место, за Барьер, в шахты. Ему было двадцать девять. Я спросил, считает ли он, что заслужил Барьер.</p>
+    <p class="line">— Мало дали.</p>
+  </div>
+</section>
+
+<section id="ch4" class="col" data-hor=".35">
+  <div class="sec-head">
+    <p class="where"><span class="n">IV</span>Долина рудников, год назад</p>
+    <h2>Тихо</h2>
+  </div>
+  <figure class="art"><img src="img/old-camp.jpg" alt="Старый лагерь"><figcaption>Старый лагерь</figcaption></figure>
+  <div class="prose">
+    <p>Его спустили у пункта обмена. Стражники Гомеза встречают новеньких одинаково: кулаком в лицо, чтобы сразу понял, где он теперь. Зешт ответил. Одному он что-то сломал, и тот, говорят, помнит его до сих пор. Потом его били толпой, пока он не лёг. Пока его спускали, он молился. Белиару, по старой привычке. Насколько я знаю, это была его последняя молитва Белиару.</p>
+    <p>Четыре месяца он копал в Старой шахте. Ни с кем не разговаривал. Копал, ел, спал, слушал Идола Парвеза, который тогда ходил в Старый лагерь звать людей к Спящему. Всю руду, что ему платили, он нёс мне.</p>
+    <p data-dym>Первый косяк я продал ему у ворот, вечером. Он затянулся, задержал дым и замер. Стоял долго. Потом сказал одно слово:</p>
+    <p class="line" data-dym>— Тихо.</p>
+    <p>Я решил, что он про лагерь, который как раз затихал к ночи. Я ошибался.</p>
+    <p>Он приходил каждый день, потом дважды в день. К концу третьего месяца я понял, что он отдаёт мне всё до куска и ест то, что перепадёт. Тогда я сказал ему, что на болоте болотника больше, чем он успеет выкурить. Сказал, чтобы продать. Чтобы его руда шла в Братство, а не мимо.</p>
+    <p>Я сам привёл его на болото. Это надо записать именно так.</p>
+  </div>
+</section>
+
+<section id="ch5" class="col" data-hor=".75">
+  <div class="sec-head">
+    <p class="where"><span class="n">V</span>Болотный лагерь, послушник</p>
+    <h2>Ночь без болотника</h2>
+  </div>
+  <figure class="art"><img src="img/shalashik.jpg" alt="Ночь у храма: страж строит башенку из палочек"><figcaption>Ночь у храма</figcaption></figure>
+  <div class="prose">
+    <p>Послушником он резал болотник на полях и сторожил их по ночам. Работал молча, как в шахте, только курил теперь больше и дешевле. На медитациях сидел у храма неподвижно, как свая. Гуру решили, что он глубоко верует. Он и верил, только не так, как им казалось.</p>
+    <p>За него поручился один из стражей. Имени его я здесь писать не стану. Скажу только, что этому стражу нужен был цепной пёс: большой, послушный, такой, кого не жалко пустить первым. Зешт это видит. Ему всё равно. Цепь так цепь, лишь бы был хозяин.</p>
+    <p>Перед посвящением его испытали: ночь медитации у храма, без болотника. Для любого другого пустяк. Для него ночь, когда хор не замолкает ни на миг.</p>
+    <p>Я подглядывал с мостков. Он не медитировал. Достал палочки и строил шалашик. Всю ночь. Руки тряслись, башня падала, он собирал её заново. Под утро она стояла, ему по колено. Он посмотрел на неё, вытащил палочку снизу, и башня рухнула. <span class="brat-line">Чей это был ход, его или брата, я не знаю.</span></p>
+    <p>Потом он встал, пошёл к гуру и сказал одно слово.</p>
+    <p class="line">— Готов.</p>
+  </div>
+</section>
+
+<section id="ch6" class="col" data-hor=".4">
+  <div class="sec-head">
+    <p class="where"><span class="n">VI</span>Болотный лагерь, дальние поля</p>
+    <h2>Акула</h2>
+  </div>
+  <figure class="art"><img src="img/swamp-shark.jpg" alt="Болотная акула в протоке"><figcaption>Болотная акула</figcaption></figure>
+  <div class="prose">
+    <p>Стражем его сделал не гуру, а болотная акула. Тварь вылезла из протоки и утащила послушника, мальчишку, который резал болотник рядом с Зештом. Воды там по пояс, а в иле вязнешь по грудь. Никто не полез. Зешт полез, с раной в боку, которая и без того не давала ему дышать. Без топора, топора у него тогда не было, только серп для болотника.</p>
+    <p>Что было в воде, видели немногие. Акула всплыла брюхом вверх. Зешт выбрался и выволок за собой то, что осталось от послушника. Осталось немного.</p>
+    <p data-dym>Он положил это на мостки, сел рядом и молча докурил косяк до самых пальцев. Потом встал и пошёл резать болотник дальше.</p>
+    <p>С моста всё это видел Кор Ангар. Через неделю Зешт носил доспех стража. Многим это пришлось не по нраву: восемь месяцев в Братстве, и уже страж. Вслух никто ничего не сказал. С тех пор вокруг него держится холод, и никто его специально не нагоняет.</p>
+    <p>При посвящении ему выдали двуручный топор, широкий и тяжёлый. Он взял его, взвесил, повёл кистью, проверяя баланс, как берут знакомую вещь. Тогда я впервые подумал, что арена не всё, что у него было до нас. Я спросил, есть ли у топора имя.</p>
+    <p class="line">— Это железо.</p>
+    <p>Чистит он его после каждой крови, долго.</p>
+  </div>
+</section>
+
+<section id="ch7" class="col" data-hor=".65">
+  <div class="sec-head">
+    <p class="where"><span class="n">VII</span>Болотный лагерь, ныне</p>
+    <h2>Тот, кто слушает хор</h2>
+  </div>
+  <div class="prose">
+    <p>Сейчас он стоит у ворот лагеря, у храма и на полях. Ходит в Старую шахту бить ползунов для Кора Галома. Сопровождает торговцев в Старый лагерь, меня тоже. Наказывает провинившихся послушников. Приказы выполняет без вопросов, своеволия за ним не замечено ни разу. Иногда мне кажется, что своей воли у него нет вовсе. Есть хозяин, есть топор, есть хор.</p>
+    <p>В бою он сильный и выносливый, боли не замечает и спокоен так, что становится не по себе. Противника видит насквозь, добивает не колеблясь. Но он медленный, а с раной в боку быстро не развернуться. Отступать не умеет, из лука и арбалета не стреляет. Без болотника у него дрожат руки, а когда хор громкий, он глохнет посреди драки. Руны Братства учит, но идёт тяжело: магия, говорит, шумит.</p>
+    <p>После каждого боя у него одно и то же: сразу закуривает, долго чистит лезвие, потом сидит и слушает. Я однажды спросил, что он слушает.</p>
+    <p class="line">— Стало ли их больше.</p>
+    <p>На храмовых службах он стоит у дальней стены. Все смотрят на Ю'Бериона, а я смотрю на него. Губы у него шевелятся: тише, тише. Хор, говорит он, громче всего в храме. Почему, он не знает. Я тоже не знаю, и мне это не нравится.</p>
+    <p>Гуру говорят, что Спящий скоро проснётся. Будет Великая церемония, и избранные встанут рядом. Зешт хочет стоять рядом. Это единственное, чего он хочет вслух. Что ему нужно на самом деле, он не знает сам. Может быть, тишины. Такой, которую не надо курить.</p>
+    <p>Я жду церемонию, как и весь лагерь. Но боюсь того же, чего боится он: что в ту ночь хор наконец заговорит словами, и он услышит, что они говорили ему всё это время.</p>
+    <p>И ещё. Вчера у пункта обмена спустили новую партию. Среди них был человек с островов: тёмный, бритый, с храмовыми знаками на руках. Он долго смотрел в сторону болот, будто кого-то искал. Зешту я пока не сказал.</p>
+  </div>
+</section>
+
+<div class="end col" id="end" data-hor="0">
+  <p class="pred">Ночью, у старой сваи, хор замолчал. Остался один голос.</p>
+  <p id="slova" aria-label="Сыграем? Твой ход.">Сыграем? Твой ход.</p>
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+(() => {
+  const root = document.documentElement;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  document.querySelectorAll('.portrait img, .art img').forEach(img => {
+    const box = img.closest('figure');
+    const miss = () => box.classList.add('missing');
+    img.addEventListener('error', miss);
+    if (img.complete && !img.naturalWidth) miss();
+  });
+
+  const HOR = ['за что','не надо','пить','мама','я не крал','больно','руки','ещё раз','кто там','не вижу','холодно','отпусти','я скажу','не я','помилуй','кровь','тише','господин','я всё скажу','он не виноват','зачем','дышать','не надо больше','свет','жжёт','пустите','я не хотел','ради Белиара','сестра','за что, за что'];
+  const BRAT = ['сыграем?','твой ход','я упаду','не бойся','сам опустил','ты первый','ещё палочку','я не злюсь'];
+  const choir = document.querySelector('.choir');
+  function build(){
+    choir.textContent = '';
+    const w = innerWidth, h = innerHeight;
+    const rowH = w < 700 ? 38 : 30;
+    for (let y = 12; y < h; y += rowH){
+      let x = -Math.random() * 120;
+      while (x < w){
+        const brat = Math.random() < .07;
+        const s = document.createElement('span');
+        const list = brat ? BRAT : HOR;
+        s.textContent = list[Math.floor(Math.random() * list.length)];
+        if (brat) s.className = 'brat';
+        const size = .85 + Math.random() * .55;
+        s.style.cssText = `left:${x}px;top:${y + (Math.random() * 8 - 4)}px;--s:${size}rem;--d:${7 + Math.random() * 9}s;--dl:${-Math.random() * 16}s`;
+        choir.appendChild(s);
+        x += s.textContent.length * size * 9 + 40 + Math.random() * 120;
+      }
+    }
+  }
+  build();
+  let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(build, 300); });
+
+  const blocks = [...document.querySelectorAll('[data-hor]')];
+  const dyms = [...document.querySelectorAll('[data-dym]')];
+  let active = null;
+
+  function inBand(el, a, b){ const r = el.getBoundingClientRect(); return r.bottom > innerHeight * a && r.top < innerHeight * b; }
+  function refresh(){
+    const hero = document.querySelector('.hero').getBoundingClientRect();
+    let cur = null;
+    for (const b of blocks){ if (inBand(b, .45, .55)) cur = b; }
+    if (!cur){
+      if (hero.bottom > innerHeight * .5){ root.style.setProperty('--hor', .35); document.body.classList.remove('brat-mode'); return; }
+      cur = active;
+    }
+    if (!cur) return;
+    active = cur;
+    const smoke = dyms.some(d => inBand(d, .3, .7));
+    root.style.setProperty('--hor', smoke ? 0 : cur.dataset.hor);
+    document.body.classList.toggle('brat-mode', cur.hasAttribute('data-brat'));
+  }
+  let q = false;
+  addEventListener('scroll', () => { if (!q){ q = true; requestAnimationFrame(() => { q = false; refresh(); }); } }, {passive:true});
+  refresh();
+
+  const slova = document.getElementById('slova');
+  const words = slova.textContent.trim().split(' ');
+  slova.textContent = '';
+  let n = 0;
+  words.forEach((wd, i) => {
+    if (i) slova.appendChild(/\?$/.test(words[i - 1]) ? document.createElement('br') : document.createTextNode(' '));
+    const w = document.createElement('span'); w.className = 'w';
+    [...wd].forEach(ch => { const s = document.createElement('span'); s.textContent = ch;
+      s.style.transitionDelay = (reduce ? 0 : .3 * n + Math.random() * .5) + 's'; w.appendChild(s); n++; });
+    slova.appendChild(w);
+  });
+  new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) slova.classList.add('go'); }), {threshold:.6}).observe(slova);
+})();
+</script>
+</body>
+</html>
